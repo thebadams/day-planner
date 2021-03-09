@@ -1,3 +1,6 @@
+//grab meetings from local storage
+var meetings = JSON.parse(localStorage.getItem("savedMeetings") || "[]")
+
 //grab html elements
 var currentDay = $("#current-day");
 
@@ -24,11 +27,30 @@ timeBlocks.each(function(index){
     } else if(this.dataset.hour > currentHour){
         $(this).addClass("future");
     }
+});
+
+//information logic
+//event class
+class plannedEvent {
+    constructor(tName, tTime){
+        this.name = tName,
+        this.time = tTime
+    }
 }
-)
 
-var container = $(".container");
+timeBlocks.on("click", ".save-btn i", saveData);
 
-container.append("<input type = 'password'>")
+function saveData(event){
+   var eventValue = $($(event.target).parent().siblings()[1]).val()
+    eventTime = $($(event.target).parent().parent()).attr("data-hour");
+
+    var scheduledEvent = new plannedEvent (eventValue, eventTime);
+
+    meetings.push(scheduledEvent);
+    localStorage.setItem("savedMeetings", JSON.stringify(meetings));
+    
+    
+
+}
 
 
