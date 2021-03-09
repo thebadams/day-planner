@@ -48,9 +48,12 @@ function saveData(event){
 
     meetings.push(scheduledEvent);
     localStorage.setItem("savedMeetings", JSON.stringify(meetings));
-    
-    
+}
 
+function sortMeetings() {
+    meetings.sort(function(a, b){
+      return  parseInt(a.time) - parseInt(b.time)
+    })
 }
 
 
