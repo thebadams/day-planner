@@ -14,6 +14,7 @@ var currentHour = moment().hour();
 //check if current hour is between two times
 
 var timeBlocks = $(".time-block");
+var timeBlocks2 = document.querySelectorAll(".time-block");
 
 timeBlocks.each(function(index){
     if(this.dataset.hour == currentHour){
@@ -25,4 +26,9 @@ timeBlocks.each(function(index){
     }
 }
 )
+
+var container = $(".container");
+
+container.append("<input type = 'password'>")
+
 
