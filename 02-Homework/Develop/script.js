@@ -32,9 +32,10 @@ timeBlocks.each(function(index){
 //information logic
 //event class
 class plannedEvent {
-    constructor(tName, tTime){
+    constructor(tName, tTime, tDay){
         this.name = tName,
-        this.time = tTime
+        this.time = tTime,
+        this.date = tDay
     }
 }
 
@@ -44,7 +45,7 @@ function saveData(event){
    var eventValue = $($(event.target).parent().siblings()[1]).val()
     eventTime = $($(event.target).parent().parent()).attr("data-hour");
 
-    var scheduledEvent = new plannedEvent (eventValue, eventTime);
+    var scheduledEvent = new plannedEvent (eventValue, eventTime, currentDayValue);
 
     meetings.push(scheduledEvent);
     localStorage.setItem("savedMeetings", JSON.stringify(meetings));
@@ -55,5 +56,13 @@ function sortMeetings() {
       return  parseInt(a.time) - parseInt(b.time)
     })
 }
+
+// function displayMeetings() {
+//     meetings.each(function(i){
+//         if(this.date === currentDayValue){
+            
+//         }
+//     })
+// }
 
 
