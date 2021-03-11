@@ -16,10 +16,10 @@ var currentHour = moment().hour();
 
 //check if current hour is between two times
 
-var timeBlocks = $(".time-block");
-var timeBlocks2 = document.querySelectorAll(".time-block");
+var timeBlocks = newFunction();
 
-timeBlocks.each(function(index){
+
+timeBlocks.each(function(){
     if(this.dataset.hour == currentHour){
         $(this).addClass("present");
     } else if(this.dataset.hour < currentHour){
@@ -40,6 +40,10 @@ class plannedEvent {
 }
 
 timeBlocks.on("click", ".save-btn i", saveData);
+
+function newFunction() {
+    return $(".time-block");
+}
 
 function saveData(event){
    var eventValue = $($(event.target).parent().siblings()[1]).val()
