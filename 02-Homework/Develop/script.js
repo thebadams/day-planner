@@ -43,7 +43,7 @@ timeBlocks.on("click", ".save-btn i", saveData);
 
 function saveData(event){
    var eventValue = $($(event.target).parent().siblings()[1]).val()
-    eventTime = $($(event.target).parent().parent()).attr("data-hour");
+   var eventTime = $($(event.target).parent().parent()).attr("data-hour");
 
     var scheduledEvent = new plannedEvent (eventValue, eventTime, currentDayValue);
 
@@ -56,13 +56,15 @@ function sortMeetings() {
       return  parseInt(a.time) - parseInt(b.time)
     })
 }
-
-// function displayMeetings() {
-//     meetings.each(function(i){
-//         if(this.date === currentDayValue){
+var todaysMeetingsArray = [];
+function todaysMeetings(){
+    meetings.forEach(function(el){
+        if(el.date === currentDayValue){
             
-//         }
-//     })
-// }
+            todaysMeetingsArray.push(el);
+            window.console.log(todaysMeetingsArray);
+        }
+    })
+}
 
 
