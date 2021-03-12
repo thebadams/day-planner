@@ -14,9 +14,7 @@ currentDay.text(currentDayValue);
 //current hour logic using moment.js
 var currentHour = moment().hour();
 
-//check if current hour is between two times
-
-var timeBlocks = newFunction();
+//check what the current hour is -> compare it to data-hours and add "past", "present", "future" classes based upon result
 
 
 timeBlocks.each(function(){
@@ -60,6 +58,8 @@ function sortMeetings() {
       return  parseInt(a.time) - parseInt(b.time)
     })
 }
+
+// TODO: refactor meetings array to be today's meetings as they are the only ones that matter.
 var todaysMeetingsArray = [];
 function todaysMeetings(){
     meetings.forEach(function(el){
@@ -70,5 +70,6 @@ function todaysMeetings(){
         }
     })
 }
+
 
 
