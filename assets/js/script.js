@@ -66,13 +66,14 @@ function init() {
     getCurrentDay();
     displaySavedMeetings();
     displayHour();
+    setInterval(init, 60000);
 
 }
 
 init()
+    
 //set interval to run init function every minute. Will set Current day, hour, and get new meetings every minute
 
-setInterval(init, 60000)
 
 
 // function displaySavedMeetings(){
