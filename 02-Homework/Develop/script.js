@@ -16,7 +16,7 @@ var currentHour = moment().hour();
 
 //check what the current hour is -> compare it to data-hours and add "past", "present", "future" classes based upon result
 
-
+var timeBlocks = $(".time-block");
 timeBlocks.each(function(){
     if(this.dataset.hour == currentHour){
         $(this).addClass("present");
@@ -52,24 +52,28 @@ function saveData(event){
     meetings.push(scheduledEvent);
     localStorage.setItem("savedMeetings", JSON.stringify(meetings));
 }
-
-function sortMeetings() {
-    meetings.sort(function(a, b){
-      return  parseInt(a.time) - parseInt(b.time)
-    })
-}
-
-// TODO: refactor meetings array to be today's meetings as they are the only ones that matter.
-var todaysMeetingsArray = [];
-function todaysMeetings(){
-    meetings.forEach(function(el){
-        if(el.date === currentDayValue){
-            
-            todaysMeetingsArray.push(el);
-            window.console.log(todaysMeetingsArray);
+// FIXME:this appears to be removing different elements than it should
+function removeOldMeetings() {
+    for (let i= 0; i < meetings.length; i++) {
+        if(meetings[i].date !== currentDayValue) {
+            meetings.splice(i, 0);
         }
-    })
+    }
 }
+
+// function displaySavedMeetings() {
+//     for(let i = 0; i < meetings.length; i++) {
+//         if(meetings[i].date === currentDayValue){
+//             var meetingTime = meetings[i].time;
+//             var timeBlockText = $(".time-block textarea");
+//             $(this.timeBlockText).text("meetingTime)
+            
+//         }
+//     }
+// }
+
+
+
 
 
 
