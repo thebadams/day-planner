@@ -14,9 +14,15 @@ currentDay.text(currentDayValue);
 //current hour logic using moment.js
 var currentHour = moment().hour();
 
+function getCurrentDay(){
+    currentDayValue = moment().format("ddd, MMMM Do");
+    currentDay.text(currentDayValue);
+}
+
 //check what the current hour is -> compare it to data-hours and add "past", "present", "future" classes based upon result
 
 var timeBlocks = $(".time-block");
+function displayHour(){
 timeBlocks.each(function(){
     if(this.dataset.hour == currentHour){
         $(this).addClass("present");
@@ -26,6 +32,7 @@ timeBlocks.each(function(){
         $(this).addClass("future");
     }
 });
+}
 
 //information logic
 //event class
@@ -53,6 +60,20 @@ function displaySavedMeetings() {
         $($(this).children(".description")).val(localStorage.getItem(time));
     })
 }
+
+
+function init() {
+    getCurrentDay();
+    displaySavedMeetings();
+    displayHour();
+
+}
+
+init()
+//set interval to run init function every minute. Will set Current day, hour, and get new meetings every minute
+
+setInterval(init, 60000)
+
 
 // function displaySavedMeetings(){
 // var todaysMeetings = [];
