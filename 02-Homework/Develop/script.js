@@ -52,25 +52,38 @@ function saveData(event){
     meetings.push(scheduledEvent);
     localStorage.setItem("savedMeetings", JSON.stringify(meetings));
 }
-// FIXME:this appears to be removing different elements than it should
-function removeOldMeetings() {
-    for (let i= 0; i < meetings.length; i++) {
-        if(meetings[i].date !== currentDayValue) {
-            meetings.splice(i, 0);
-        }
-    }
-}
 
-// function displaySavedMeetings() {
-//     for(let i = 0; i < meetings.length; i++) {
-//         if(meetings[i].date === currentDayValue){
-//             var meetingTime = meetings[i].time;
-//             var timeBlockText = $(".time-block textarea");
-//             $(this.timeBlockText).text("meetingTime)
-            
-//         }
-//     }
-// }
+function displaySavedMeetings(){
+var todaysMeetings = [];
+var todaysTimeBlocks = [];
+// get current day's meetings
+    for(var i = 0; i < meetings.length; i++) {
+        if(meetings[i].date === currentDayValue){
+            todaysMeetings.push(meetings[i]);//push 
+            //sort todaysMeetings by time
+            todaysMeetings.sort((a, b) => a.time - b.time)
+        }
+        for(var j = 0; j < timeBlocks.length; j++){
+            if(meetings[i].time == timeBlocks[i].dataset.hour) {
+                todaysTimeBlocks.push(timeBlocks[i])
+            }
+
+        }
+        
+
+    }
+
+    console.log("Todays Time Blocks");
+    console.log(todaysTimeBlocks)
+
+
+}
+// get current day's meeting times
+    //take a look at the timeBlocks.dataset.hour values
+        //if the dataset.hour values match meeting times, push to an array
+        //run through the array and apply textContent to those html elements
+// get current day meeting names
+
 
 
 
